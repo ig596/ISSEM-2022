@@ -5,9 +5,11 @@ description = "Group 21 Information Systems Security Engineering & Management"
 authors = ["Isaiah Genis <ig596@nyu.edu>","Andrew Quijano <afq2003@nyu.edu>", "Jamie Leach <jhl925@nyu.edu>", "Yevhen Pankevych <yp2525@nyu.edu>"]
 
 [tool.poetry.dependencies]
-python = "^3.7"
-jupyter = "^1.0.0"
+python = "^3.8"
+jupyter = "^1.0"
 matplotlib = "^3.5.2"
+cryptography = "^37.0.4"
+pandas = "^1.4.3"
 
 [tool.poetry.dev-dependencies]
 

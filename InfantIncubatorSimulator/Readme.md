@@ -1,4 +1,4 @@
-# Lab 5 - Infant Incubator Model and Simulator Part 2
+# Lab 6 - Infant Incubator Model and Simulator Part 3
 
 In this assignment you will apply everything you have learned in this module on a real world application, the Infant Incubator. The Infant Incubator is designed to provide a safe, controlled 
 space for infants to live while their vital organs develop. Unlike a simple bassinet, an incubator provides an environment that can be adjusted to provide the ideal temperature as well as the perfect amount 
@@ -15,16 +15,17 @@ Your first goal as a Security Engineer who wants to ensure the security of the a
 Notice that these questions are parallel to security paradigms: Security, Efficiency and Accuracy, Availability. If you can find a hypothesis where a security paradigm is not met that would mean the application is not secure and a possible exploit exist. The testcases can be written in python or bash.
 
 # Task:
-We have listed hints for 3 vulnerabilities below which are currently present in code. Your task is to explain how it violates the security regulations (in terms of the above questions) and then provide the testcases to demonstrate how these vulnerabilities can be exploited. 
+We have listed hints for 3 vulnerabilities below which are currently present in code. In Lab 5 you explained how these vulnerabilities could be exploited and provided the test cases. In this lab you are going to provided the patches to fix these vulnerabilities.  
 
 1. Password is Hardcoded (SampleNetworkClient.py)
 2. Token List has the potential to continuously grow (SampleNetworkServer.py)
 3. Plaintest authentication token and authentication (SampleNetworkClient.py)
 
 # Submission: 
-For each vulnerability above:
-1. describe how it answers the three questions mentioned above.
-2. Provide test cases (in python or bash) to demonstrate how these vulnerabilities can be exploited.   
+For each vulnerability above, provide the patches (code in python) to fix them.
+
+# Hints:
+For first vulnerability: You can have the password be passed as a command-line parameter or read from a config file or hard-code the encrypted password, then decrypt and connect.
 
 ## Infant Incubator Model Explained
 Cybersecurity education lacks practicality. We know the security principles. We know the importance of cryptography and building-security-in. We know the importance of an adversarial mindset (the security mindset). We know the importance of exposing assumptions (especially implicit ones). However, how many of us know how to apply these theoretical principles in the real world? How to trade off security for the other abilities. While build in security is incomplete, we also need to plan for upgrades.
