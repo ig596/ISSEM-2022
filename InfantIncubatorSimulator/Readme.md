@@ -1,31 +1,15 @@
-# Lab 6 - Infant Incubator Model and Simulator Part 3
+# Lab 8 - Infant Incubator Model and Simulator
 
-In this assignment you will apply everything you have learned in this module on a real world application, the Infant Incubator. The Infant Incubator is designed to provide a safe, controlled 
-space for infants to live while their vital organs develop. Unlike a simple bassinet, an incubator provides an environment that can be adjusted to provide the ideal temperature as well as the perfect amount 
-of oxygen, humidity, and light. This paticular Infant Incubator is set to release on **15th May**(Deadline of the Project). The developers of this project would like you, the Security Engineer, to ensure the product satisify security regulations for medical devices before the release date. As a Security Engineer, you are required **"Make sure we satisfiy security Regulations"**. The company has given you the options of accomplishing this by either implementing Vulnerability Patching or creating a Risk Analysis Report.
+In this lab you will apply everything you have learned in this module on a real world application, the Infant Incubator. The Infant Incubator is designed to provide a safe, controlled space for infants to live while their vital organs develop. Unlike a simple bassinet, an incubator provides an environment that can be adjusted to provide the ideal temperature as well as the perfect amount of oxygen, humidity, and light. The developers of this project would like your team to ensure the product satisify US Government's security regulations for medical devices before the release date. As a Security Engineer Team, you are required **"Make sure we satisfiy US Government Regulations"**.
 
-The deliverables for this Lab will based on the vulnerability patching:
 
-Your first goal as a Security Engineer who wants to ensure the security of the application is to identify security vulnerabilities in the project and create testcases to exploit them. In the real world, applications are often tested with test scripts. The following are a few questions a Security Engineer would ask when writing a testcase to test the Security of their application:
+## Task:
 
-- "Does this application protect the confidentiaility of data?"
-- "Does this application hamper performance?"
-- "Does this application prevent actions that shoudl be allowed?"
+In this lab, you have to find out 5 vulnerabilities in the infant incubator model. Write a brief explanation of each vulnerability, where it appears in the code, and how it could compromise the incubator. Vulnerabilities found in the previous labs should be excluded in this lab. 
 
-Notice that these questions are parallel to security paradigms: Security, Efficiency and Accuracy, Availability. If you can find a hypothesis where a security paradigm is not met that would mean the application is not secure and a possible exploit exist. The testcases can be written in python or bash.
+## Submission
 
-# Task:
-We have listed hints for 3 vulnerabilities below which are currently present in code. In Lab 5 you explained how these vulnerabilities could be exploited and provided the test cases. In this lab you are going to provided the patches to fix these vulnerabilities.  
-
-1. Password is Hardcoded (SampleNetworkClient.py)
-2. Token List has the potential to continuously grow (SampleNetworkServer.py)
-3. Plaintest authentication token and authentication (SampleNetworkClient.py)
-
-# Submission: 
-For each vulnerability above, provide the patches (code in python) to fix them.
-
-# Hints:
-For first vulnerability: You can have the password be passed as a command-line parameter or read from a config file or hard-code the encrypted password, then decrypt and connect.
+Over all write up word limit is 500 words. This is a group submission. Please write your responses in a word file and convert it to the pdf. Submit only one pdf file per group. Title of the file should be lab8_group_<your group number>.pdf. Good luck!
 
 ## Infant Incubator Model Explained
 Cybersecurity education lacks practicality. We know the security principles. We know the importance of cryptography and building-security-in. We know the importance of an adversarial mindset (the security mindset). We know the importance of exposing assumptions (especially implicit ones). However, how many of us know how to apply these theoretical principles in the real world? How to trade off security for the other abilities. While build in security is incomplete, we also need to plan for upgrades.
