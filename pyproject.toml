@@ -6,6 +6,8 @@ authors = ["Isaiah Genis <ig596@nyu.edu>","Andrew Quijano <afq2003@nyu.edu>", "J
 
 [tool.poetry.dependencies]
 python = "^3.7"
+jupyter = "^1.0.0"
+matplotlib = "^3.5.2"
 
 [tool.poetry.dev-dependencies]
 
