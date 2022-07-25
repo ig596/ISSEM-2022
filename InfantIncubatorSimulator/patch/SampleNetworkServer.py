@@ -5,6 +5,7 @@ import math
 import os
 import secrets
 import socket
+import sys
 import threading
 import time
 
@@ -12,6 +13,7 @@ import cryptography.fernet
 import matplotlib.animation as animation
 import matplotlib.pyplot as plt
 
+sys.path.append(os.path.dirname(__file__) + "/../")
 import infinc
 
 PASSWORD = None
@@ -64,7 +66,7 @@ class SmartNetworkThermometer(threading.Thread):
 
         return self.curTemperature
 
-    def processCommands(self, msg, addr):
+    def processCommands(self, msg, addr, new_token=None):
         print(msg)
         cmds = msg.split(';')
         for c in cmds:
@@ -86,6 +88,7 @@ class SmartNetworkThermometer(threading.Thread):
                 else:  # unknown command
                     msg = self.crypto.encrypt(b"Invalid Command\n")
                     self.serverSocket.sendto(msg, addr)
+                return
             elif c == "SET_DEGF":
                 self.deg = "F"
             elif c == "SET_DEGC":
@@ -93,13 +96,17 @@ class SmartNetworkThermometer(threading.Thread):
             elif c == "SET_DEGK":
                 self.deg = "K"
             elif c == "GET_TEMP":
-                msg = self.crypto.encrypt(b"%f\n" % self.getTemperature())
+                msg = self.crypto.encrypt(f"{self.getTemperature()};token:{new_token}".encode('utf-8'))
                 self.serverSocket.sendto(msg, addr)
+                break
             elif c == "UPDATE_TEMP":
                 self.updateTemperature()
             elif c:
                 msg = self.crypto.encrypt(b"Invalid Command\n")
                 self.serverSocket.sendto(msg, addr)
+
+            msg = self.crypto.encrypt(f"token:{new_token}".encode('utf-8'))
+            self.serverSocket.sendto(msg, addr)
 
     def run(self):  # the running function
         while True:
@@ -114,7 +121,9 @@ class SmartNetworkThermometer(threading.Thread):
                     if semi != -1:  # if we found the semicolon
                         # print (msg)
                         if msg[:semi] in self.tokens:  # if its a valid token
-                            self.processCommands(msg[semi + 1:], addr)
+                            new_token = secrets.token_urlsafe(16)
+                            self.tokens[self.tokens.index(msg[:semi])] = new_token
+                            self.processCommands(msg[semi + 1:], addr, new_token)
                         else:
                             msg = self.crypto.encrypt(b"Bad Token\n")
                             self.serverSocket.sendto(msg, addr)
@@ -193,7 +202,7 @@ SIMULATION_STEP = .1  # in seconds
 bob = infinc.Human(mass=8, length=1.68, temperature=36 + 273)
 # CODE TO PULL PASSWORD FROM CONFIGS
 parser = configparser.ConfigParser(strict=False, interpolation=None)
-parser.read(filenames=f'{os.path.dirname(__file__)}/config.ini')
+parser.read(filenames=f'{os.path.dirname(__file__)}/../config.ini')
 password = parser['configs']["PASSWORD"]
 key = parser['configs']['key']
 # bobThermo = infinc.SmartThermometer(bob, UPDATE_PERIOD)
